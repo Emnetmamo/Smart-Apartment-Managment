@@ -1,20 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+// Common Page imports
+import WelcomePage from './components/WelcomePage';
+import NextPage from './components/NextPage';
+import LoginPage from './components/LoginPage';
+import RegistrationPage from './components/RegistrationPage';
+import HomePage from './components/HomePage';
+
+// GateFeature imports
+import GiveAccessPage from './components/GateFeatures/GiveAccessPage';
+import AddVisitorPage from './components/GateFeatures/AddVisitorPage';
+import EntryRecordPage from './components/GateFeatures/EntryRecordPage'
+
+
+//Additional Features import
+import IncidentReportPage from './components/AdditionalFeatures/IncidentReportPage'
+
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="WelcomePage" headerMode="none">
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        {/* Common Pages */}
+        <Stack.Screen name="WelcomePage" component={WelcomePage} />
+        <Stack.Screen name="NextPage" component={NextPage} />
+        <Stack.Screen name="LoginPage" component={LoginPage} />
+        <Stack.Screen name="RegistrationPage" component={RegistrationPage} />
+        <Stack.Screen name="HomePage" component={HomePage} />
+
+        {/* Gate Features */}
+        <Stack.Screen name="GiveAccessPage" component={GiveAccessPage} />
+        <Stack.Screen name="AddVisitorPage" component={AddVisitorPage} />
+        <Stack.Screen name="EntryRecordPage" component={EntryRecordPage} />
+      
+      {/* Additional Feature */}
+        <Stack.Screen name="IncidentReportPage" component={IncidentReportPage} />
+
+
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
